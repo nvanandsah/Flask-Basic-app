@@ -32,7 +32,7 @@ def get_last_reqs():
 def add_data(req):
     """ Insert filename into database
     """
-    g.db.execute('insert into data (req) values (?)', [req])
+    g.db.execute('insert into data (reqdata) values (?)', [req])
     g.db.commit()
 
 @app.before_request
