@@ -67,11 +67,14 @@ def upload_data():
     """
     if request.method == 'POST':
 	multi_dict = request.args
-	for key in multi_dict:
+	'''for key in multi_dict:
 		print multi_dict.get(key)
-		print multi_dict.getlist(key)	
-	#user = request.form['nm']
-	'''add_data(filename)
+		print multi_dict.getlist(key)'''	
+	name = request.form['name']
+	numPeople=request.form['numPeople']
+	special= request.form['special']
+	f = "name:"+name+" No of people: "+ numPeople + "Special: "+special 
+	add_data(f)
 	return redirect(url_for('show_pic', filename=filename))
         else: # Bad file extension
             abort(404)
