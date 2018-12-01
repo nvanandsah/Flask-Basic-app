@@ -66,18 +66,18 @@ def upload_data():
     """ Default route.
     """
     if request.method == 'POST':
-	multi_dict = request.args
-	'''for key in multi_dict:
-		print multi_dict.get(key)
-		print multi_dict.getlist(key)'''	
-	name = request.form['name']
-	numPeople=request.form['numPeople']
-	special= request.form['special']
-	f = "name:"+name+" No of people: "+ numPeople + "Special: "+special 
-	add_data(f)
-	return redirect(url_for('show_pic', filename=filename))
-        else: # Bad file extension
-            abort(404)
-    else:
-        return render_template('upload.html', pics=get_last_pics())'''
+		print request.data
+		import ast
+		request.data = ast.literal_eval(request.data)
+		multi_dict = request.args
+		'''for key in multi_dict:
+			print multi_dict.get(key)
+			print multi_dict.getlist(key)'''	
+		name = request.data['name']
+		numPeople=request.data['numPeople']
+		special= request.data['special']
+		f = "name:"+name+" No of people: "+ numPeople + "Special: "+special 
+		print f	
+		add_data(f)
+		return "ok"
 
